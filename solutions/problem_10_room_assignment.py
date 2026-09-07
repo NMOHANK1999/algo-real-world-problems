@@ -23,3 +23,6 @@ def assign_rooms(
     meetings: list[Meeting], rooms: list[Room]
 ) -> dict[str, str] | None:
     raise NotImplementedError
+
+
+assign_rooms([], [])
