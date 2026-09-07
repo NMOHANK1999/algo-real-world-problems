@@ -34,6 +34,7 @@ def assign_rooms(meetings: list[Meeting], rooms: list[Room]) -> dict[str, str] |
 
         #options
         for room in rooms:
+            #constraints
             if room.capacity < meet.attendees:
                 continue
             if not all( 
@@ -43,8 +44,10 @@ def assign_rooms(meetings: list[Meeting], rooms: list[Room]) -> dict[str, str] |
                 continue
             bookingTime[room.name].append((meet.start, meet.end))
             result[meet.name] = room.name
+            #backtrack
             if backtrack(meetNum + 1):
                 return True
+            #rollback
             del result[meet.name]
             bookingTime[room.name].pop()
         return False
