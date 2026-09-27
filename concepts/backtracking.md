@@ -43,7 +43,7 @@ Every backtracking problem has the same basic pieces:
 - **State:** the partial answer built so far.
 - **Choices:** the options available at the current step.
 - **Constraints:** the rules that say whether a choice is allowed.
-- **Base case:** the condition that says the answer is complete.
+- **Base case / success case:** the condition that says the answer is complete.
 - **Undo:** the operation that removes a failed choice before trying another.
 
 Before writing code, try to identify each of these in plain language.
@@ -93,12 +93,19 @@ def binary_strings(length: int) -> list[str]:
     results: list[str] = []
 
     def build(prefix: str) -> None:
+        # State: `prefix` is the partial answer built so far.
+
+        # Base case / success case: the answer has the requested length.
         if len(prefix) == length:
             results.append(prefix)
             return
 
+        # Choices: select either "0" or "1" as the next digit.
+        # Constraints: none; both choices are always valid here.
         for digit in ("0", "1"):
             build(prefix + digit)
+            # Undo: implicit. `prefix + digit` creates a new string, so the
+            # caller's immutable `prefix` was never changed.
 
     build("")
     return results
@@ -106,9 +113,6 @@ def binary_strings(length: int) -> list[str]:
 
 assert binary_strings(2) == ["00", "01", "10", "11"]
 ```
-
-Strings are immutable in Python, so each call receives a new `prefix`. There
-is no explicit undo step in this version.
 
 ## Example 2: choose, recurse, and undo
 
@@ -226,7 +230,7 @@ while obeying these constraints.”
 
 - Forgetting to undo mutable state after a recursive call fails.
 - Returning failure after the first choice fails instead of trying the rest.
-- Treating a partial answer as a complete answer.
+- Treating a partial answer as if it reached the base case / success case.
 - Checking constraints too late and exploring branches that are already invalid.
 - Saving a mutable result without copying it.
 - Using `return` when an invalid choice should use `continue`.
