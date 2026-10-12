@@ -64,6 +64,22 @@ Each problem has three parts:
 | 29 | Malware Spread Simulator | Multi-source BFS | Infection spread, nearest-facility maps |
 | 30 | Cloud Budget Allocator | 0/1 knapsack + subset-sum counting | Funding projects under a budget |
 
+### Prefix-sum practice
+
+| # | Problem | Concept | Real-world analogue |
+|---|---------|---------|----------------------|
+| 31 | Usage Report Queries | 1D prefix sums + binary search | Static usage dashboards |
+| 32 | Data Center Heatmap | 2D prefix sums | Region totals on a monitoring grid |
+| 33 | Feature Rollout Adjuster | Difference array + prefix sum | Apply bulk capacity changes |
+
+### Non-contiguous selection practice
+
+| # | Problem | Concept | Real-world analogue |
+|---|---------|---------|----------------------|
+| 34 | Voucher Bundle Minimizer | 0/1 minimum-coin dynamic programming | One-time credits that reach an invoice total |
+| 35 | Invoice Split Checker | Equal-partition subset sum | Split invoice line items between teams |
+| 36 | Ledger Sign Reconciler | Target-sum dynamic programming | Assign charges or credits to reconcile a ledger |
+
 Several tests (11-16, 22-25, 28-29) include large inputs that catch
 recursion-limit crashes or asymptotically slow solutions, not just
 wrong answers.
